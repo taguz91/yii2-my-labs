@@ -42,6 +42,9 @@
             "helpers.php"
         ]
     },
+    "scripts": {
+        "serve": "php yii serve --docroot=\"api/web/\""
+    },
     "repositories": [
         {
             "type": "composer",

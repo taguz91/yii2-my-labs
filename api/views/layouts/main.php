@@ -4,6 +4,7 @@
 /* @var $content string */
 
 use api\assets\AppAsset;
+use common\widgets\Alert;
 use yii\bootstrap4\Html;
 
 AppAsset::register($this);
@@ -24,6 +25,9 @@ AppAsset::register($this);
     <?php $this->beginBody() ?>
 
     <main role="main" class="flex-shrink-0">
+
+        <?= Alert::widget() ?>
+
         <div class="container">
             <?= $content ?>
         </div>
