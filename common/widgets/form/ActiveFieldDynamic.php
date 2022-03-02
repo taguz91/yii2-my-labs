@@ -46,4 +46,13 @@ class ActiveFieldDynamic extends \yii\bootstrap4\ActiveField
         }
         return $this;
     }
+
+    public function useWidget(array $widget)
+    {
+        if (!empty($widget)) {
+            $class = ArrayHelper::remove($widget, 'class');
+            $this->widget($class, $widget);
+        }
+        return $this;
+    }
 }

@@ -14,6 +14,7 @@ return [
     'name' => 'Application | Swagger | REST',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'timeZone' => 'American/Guayaquil',
     'controllerNamespace' => 'api\controllers',
     'components' => [
         'request' => [
@@ -62,6 +63,14 @@ return [
                     'pattern' => '<module:\w+>/<controller:\w+>/<action:\w+>',
                     'route' => '<module>/<controller>/<action>',
                 ]
+            ],
+        ],
+
+        'assetManager' => [
+            'bundles' => [
+                'yii\web\JqueryAsset' => [
+                    'jsOptions' => ['position' => \yii\web\View::POS_HEAD],
+                ],
             ],
         ],
 

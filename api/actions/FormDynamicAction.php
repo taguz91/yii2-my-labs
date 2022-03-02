@@ -98,7 +98,9 @@ class FormDynamicAction extends Action
     {
         $attributes = [];
         foreach ($section['campos'] as $campo) {
-            $coreCode = $codPrefix . ucfirst($campo['camCodigoCore']);
+            $coreCode = $codPrefix . (empty($codPrefix)
+                ? $campo['camCodigoCore'] : ucfirst($campo['camCodigoCore'])
+            );
 
             $attributes[] = [
                 'col'   => $campo['camNumeroColumnas'],
@@ -106,6 +108,8 @@ class FormDynamicAction extends Action
                 'label' => $campo['camOcultarEtiqueta'] === '0'
                     ? $campo['camNombre'] : '',
                 'placeholder' => $campo['camEjemplo'],
+                'widget' => $campo['camWidget'] ?? [],
+                'isInput' => !in_array($campo['camTipo'], ['information'])
             ];
 
             if ($campo['camObligatorio'] === '1') {

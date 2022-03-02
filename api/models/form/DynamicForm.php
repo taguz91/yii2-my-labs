@@ -9,11 +9,16 @@ use yii\helpers\ArrayHelper;
 class DynamicForm extends Model
 {
 
+    public $test;
+
     /** @var array */
     public $fields = [];
 
     /** @var array */
     public $fieldsRules = [];
+
+    /** @var array */
+    public $fieldLabels = [];
 
     /** @var array */
     private $rawAttributes = [];
@@ -24,9 +29,12 @@ class DynamicForm extends Model
     public function init()
     {
         foreach ($this->fields as $field) {
-            $this->rawAttributes[] = $field['code'];
-            $this->{$field['code']};
+            if ($field['isInput']) {
+                $this->rawAttributes[] = $field['code'];
+                $this->{$field['code']};
+            }
         }
+        $this->fieldLabels = ArrayHelper::map($this->fields, 'code', 'label');
         parent::init();
     }
 
@@ -62,7 +70,7 @@ class DynamicForm extends Model
      */
     public function attributeLabels()
     {
-        return ArrayHelper::map($this->fields, 'code', 'label');
+        return $this->fieldLabels;
     }
 
 

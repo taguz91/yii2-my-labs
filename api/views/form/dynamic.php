@@ -8,11 +8,19 @@
  */
 
 use common\widgets\form\ActiveFormDynamic;
+use common\widgets\form\BreadcrumbForm;
 use yii\bootstrap4\Html;
 
 ?>
 
 <?php $form = ActiveFormDynamic::begin() ?>
+
+<?= BreadcrumbForm::widget([
+    'currentStep' => 4,
+    'totalSteps'  => 8,
+    'prefixText'  => 'Informacion personal 1/2',
+    'type'        => BreadcrumbForm::TYPE_CIRCLE,
+]) ?>
 
 <?php foreach ($sections as $section) : ?>
     <div class="row">
@@ -26,15 +34,24 @@ use yii\bootstrap4\Html;
         </div>
 
         <?php foreach ($section['fields'] as $attribute) : ?>
-            <?= $form->field($dynamicForm, $attribute['code'])
-                ->fieldCold($attribute['col'])->addPlaceholder($attribute['placeholder']) ?>
+
+            <?php if ($attribute['isInput']) : ?>
+                <?= $form->field($dynamicForm, $attribute['code'])
+                    ->fieldCold($attribute['col'])
+                    ->addPlaceholder($attribute['placeholder'])
+                    ->useWidget($attribute['widget']) ?>
+
+            <?php else : ?>
+                <div class="col-12">
+                    <?= $form->renderWidget($attribute['widget']) ?>
+                </div>
+            <?php endif; ?>
+
         <?php endforeach; ?>
 
     </div>
 
 <?php endforeach; ?>
-
-
 
 <?= Html::submitButton('Send', [
     'class' => 'btn btn-primary'

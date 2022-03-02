@@ -2,6 +2,8 @@
 
 namespace common\widgets\form;
 
+use yii\helpers\ArrayHelper;
+
 class ActiveFormDynamic extends \yii\bootstrap4\ActiveForm
 {
     /**
@@ -19,4 +21,13 @@ class ActiveFormDynamic extends \yii\bootstrap4\ActiveForm
         return parent::field($model, $attribute, $options);
     }
 
+    public function renderWidget(array $widget)
+    {
+        if (!empty($widget)) {
+            /** @var \yii\base\Widget */
+            $class = ArrayHelper::remove($widget, 'class');
+            return $class::widget($widget);
+        }
+        return '';
+    }
 }
