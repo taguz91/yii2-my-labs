@@ -15,6 +15,11 @@ class FormController extends Controller
                 'class' => FormDynamicAction::class,
                 'dataFile' => 'form_data',
                 'json' => false,
+            ],
+            'dos' => [
+                'class' => FormDynamicAction::class,
+                'dataFile' => 'form_data_ocho',
+                'json' => false,
             ]
         ];
     }

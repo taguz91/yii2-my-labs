@@ -14,7 +14,7 @@ return [
     'name' => 'Application | Swagger | REST',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
-    'timeZone' => 'American/Guayaquil',
+    'timeZone' => 'America/Guayaquil',
     'controllerNamespace' => 'api\controllers',
     'components' => [
         'request' => [

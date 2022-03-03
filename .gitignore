@@ -43,3 +43,6 @@ phpunit.phar
 dev-api.db
 prod-api.db
 test-api.db
+
+# Auth for private bitbucket repositories
+auth.json 

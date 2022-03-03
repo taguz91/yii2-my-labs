@@ -36,6 +36,7 @@ use yii\bootstrap4\Html;
         <?php foreach ($section['fields'] as $attribute) : ?>
 
             <?php if ($attribute['isInput']) : ?>
+
                 <?= $form->field($dynamicForm, $attribute['code'])
                     ->fieldCold($attribute['col'])
                     ->addPlaceholder($attribute['placeholder'])
@@ -53,8 +54,8 @@ use yii\bootstrap4\Html;
 
 <?php endforeach; ?>
 
-<?= Html::submitButton('Send', [
-    'class' => 'btn btn-primary'
+<?= Html::submitButton('Continue', [
+    'class' => 'btn btn-primary mx-auto'
 ]) ?>
 
 <?php ActiveFormDynamic::end() ?>
